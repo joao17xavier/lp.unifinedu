@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>UniFin — Clareza Financeira para Sua Empresa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Descubra onde sua empresa está perdendo dinheiro. UniFin mostra em minutos o que suas planilhas escondem. 7 dias grátis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand:       #1776f4;
+  --brand-dark:  #1260cc;
+  --brand-light: #e8f1fe;
+  --brand-glow:  rgba(23,118,244,0.22);
+  --ink:         #0d1117;
+  --ink-soft:    #374151;
+  --ink-muted:   #6b7280;
+  --bg:          #f5f7fa;
+  --surface:     #ffffff;
+  --border:      #dde3ed;
+  --orange:      #f97316;
+  --green:       #16a34a;
+  --green-bg:    #f0fdf4;
+  --green-border:#bbf7d0;
+  --danger:      #dc2626;
+  --gold-bg:     #fffbeb;
+  --gold-border: #fde68a;
+  --gold-text:   #92400e;
+  --radius:      12px;
+  --shadow:      0 2px 16px rgba(13,17,23,0.07);
+  --shadow-lg:   0 8px 40px rgba(13,17,23,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--brand);
+  color: #fff;
+  text-align: center;
+  padding: 9px 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.topbar b { background: rgba(255,255,255,0.2); border-radius: 4px; padding: 1px 7px; }
+
+/* ── NAV ── */
+nav {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo img { height: 34px; display: block; }
+.nav-cta {
+  background: var(--brand);
+  color: #fff;
+  padding: 9px 22px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.83rem;
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+  box-shadow: 0 2px 10px var(--brand-glow);
+}
+.nav-cta:hover { background: var(--brand-dark); transform: translateY(-1px); box-shadow: 0 4px 16px var(--brand-glow); }
+
+/* ── HERO ── */
+.hero {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 68px 24px 56px;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  border: 1px solid rgba(23,118,244,0.25);
+  border-radius: 100px;
+  padding: 5px 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.badge-dot { width: 7px; height: 7px; background: var(--brand); border-radius: 50%; }
+
+.hero h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.95rem, 5.2vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.hero h1 mark {
+  background: none;
+  color: var(--brand);
+  position: relative;
+}
+.hero h1 mark::after {
+  content: '';
+  position: absolute;
+  bottom: 1px; left: 0; right: 0;
+  height: 3px;
+  background: var(--brand);
+  border-radius: 2px;
+  opacity: 0.25;
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2.3vw, 1.15rem);
+  color: var(--ink-soft);
+  max-width: 560px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+
+/* ── PRICE BOX ── */
+.price-box {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 30px 28px 22px;
+  max-width: 420px;
+  margin: 0 auto 18px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+.price-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand), #60a5fa);
+}
+.price-tag-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.price-original {
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  text-decoration: line-through;
+}
+.price-promo {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  justify-content: center;
+  margin: 4px 0 10px;
+}
+.price-promo .currency {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.price-promo .value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 3.4rem;
+  font-weight: 800;
+  color: var(--brand);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.price-promo .period {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}
+.price-savings {
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-text);
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 0.77rem;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.trial-notice {
+  background: var(--green-bg);
+  border: 1px solid var(--green-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  color: #166534;
+  font-weight: 500;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.trial-notice strong { font-weight: 700; }
+
+.cta-main {
+  display: block;
+  width: 100%;
+  background: var(--brand);
+  color: #fff;
+  padding: 17px 20px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 1rem;
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+  box-shadow: 0 4px 18px var(--brand-glow);
+  letter-spacing: -0.01em;
+}
+.cta-main:hover {
+  background: var(--brand-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--brand-glow);
+}
+.cta-sub {
+  font-size: 0.73rem;
+  color: var(--ink-muted);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.trust-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.79rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* ── MOCKUP ── */
+.mockup-wrap {
+  max-width: 820px;
+  margin: 40px auto 0;
+  padding: 0 24px;
+}
+.mockup-wrap img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+}
+
+/* ── SECTION BASE ── */
+section {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 72px 24px;
+}
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brand);
+  margin-bottom: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.section-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.5rem, 3.8vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.section-sub {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* ── PROBLEMS (dark) ── */
+.problems-bg { background: #0d1117; }
+.problems-bg section { color: #fff; }
+.problems-bg .section-title { color: #f1f5f9; }
+.problems-bg .section-sub { color: #94a3b8; }
+.problems-bg .section-label { color: #60a5fa; }
+
+.problem-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 36px;
+}
+.problem-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  transition: background 0.2s;
+}
+.problem-item:hover { background: rgba(255,255,255,0.07); }
+.problem-icon {
+  width: 34px; height: 34px;
+  background: rgba(23,118,244,0.18);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.95rem;
+}
+.problem-item p {
+  color: #cbd5e1;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  padding-top: 5px;
+}
+.problem-item p strong { color: #f1f5f9; }
+
+/* ── BENEFITS ── */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 36px;
+}
+.benefit-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 22px 22px 26px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--brand);
+  border-radius: 4px 0 0 4px;
+}
+.benefit-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.benefit-icon { font-size: 1.5rem; margin-bottom: 8px; }
+.benefit-card h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+.benefit-card p { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.58; }
+
+/* ── SCREENSHOTS ── */
+.screenshots { display: flex; flex-direction: column; gap: 18px; margin-top: 32px; }
+.screenshots img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials-bg {
+  background: #f0f6ff;
+  border-top: 1px solid #c7dbfd;
+  border-bottom: 1px solid #c7dbfd;
+}
+.testi-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 36px;
+}
+.testi-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+.stars { color: #f59e0b; font-size: 0.88rem; margin-bottom: 10px; letter-spacing: 2px; }
+.testi-card blockquote {
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.65;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+.testi-author { display: flex; align-items: center; gap: 10px; }
+.testi-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.testi-name { font-weight: 700; font-size: 0.87rem; color: var(--ink); font-family: 'Plus Jakarta Sans', sans-serif; }
+.testi-role { font-size: 0.77rem; color: var(--ink-muted); }
+
+/* ── COMPARISON ── */
+.comparison-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 36px;
+  box-shadow: var(--shadow);
+}
+.comparison-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: var(--ink);
+  color: #fff;
+  padding: 13px 16px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.comparison-header .col-1 { text-align: left; }
+.comparison-header .col-3 { color: #60a5fa; }
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 13px 16px;
+  font-size: 0.87rem;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.comparison-row:last-child { border-bottom: none; }
+.comparison-row:nth-child(even) { background: #f9fafc; }
+.comparison-row .col-1 { font-weight: 500; color: var(--ink); }
+.comparison-row .col-2, .comparison-row .col-3 { text-align: center; }
+.check { color: var(--brand); font-weight: 800; font-size: 1.05rem; }
+.cross { color: var(--danger); font-weight: 800; font-size: 1.05rem; }
+
+/* ── FAQ ── */
+.faq-list { margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.18s;
+}
+.faq-item.open { border-color: var(--brand); }
+.faq-q {
+  padding: 17px 20px;
+  font-weight: 600;
+  font-size: 0.93rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: color 0.15s;
+}
+.faq-item.open .faq-q { color: var(--brand); }
+.faq-icon {
+  font-size: 1.2rem;
+  color: var(--brand);
+  flex-shrink: 0;
+  transition: transform 0.22s;
+  font-weight: 700;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a {
+  display: none;
+  padding: 14px 20px 18px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.68;
+  border-top: 1px solid var(--border);
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── FINAL CTA (brand blue bg) ── */
+.final-cta-bg { background: var(--brand); }
+.final-cta-bg section { text-align: center; }
+.final-cta-bg .section-label { color: rgba(255,255,255,0.7); }
+.final-cta-bg .section-title { color: #fff; }
+.final-cta-bg .section-sub { color: rgba(255,255,255,0.8); margin: 0 auto 32px; }
+
+.final-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.final-original { font-size: 1rem; color: rgba(255,255,255,0.55); text-decoration: line-through; }
+.final-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+}
+.final-period { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
+
+.cta-final-wrap { max-width: 360px; margin: 0 auto; }
+.cta-final {
+  display: block;
+  width: 100%;
+  background: #fff;
+  color: var(--brand);
+  padding: 18px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: transform 0.15s, box-shadow 0.18s, background 0.18s;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  letter-spacing: -0.01em;
+  margin-bottom: 11px;
+}
+.cta-final:hover {
+  background: #f0f6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 36px rgba(0,0,0,0.22);
+}
+.cta-final-sub { font-size: 0.77rem; color: rgba(255,255,255,0.65); }
+.final-guarantee {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  padding: 8px 18px;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.79rem;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #0a0d14;
+  color: #475569;
+  text-align: center;
+  padding: 28px 24px;
+  font-size: 0.8rem;
+}
+footer strong { color: #64748b; }
+
+/* ── STICKY MOBILE ── */
+.sticky-cta {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(13,17,23,0.97);
+  backdrop-filter: blur(10px);
+  padding: 11px 14px;
+  z-index: 200;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.sticky-cta a {
+  display: block;
+  background: var(--brand);
+  color: #fff;
+  text-align: center;
+  padding: 14px;
+  border-radius: 9px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: background 0.18s;
+  box-shadow: 0 2px 12px var(--brand-glow);
+}
+.sticky-cta a:hover { background: var(--brand-dark); }
+.sticky-cta-sub {
+  text-align: center;
+  font-size: 0.7rem;
+  color: #475569;
+  margin-top: 5px;
+}
+
+/* ── RESPONSIVE ── */
+@media (min-width: 600px) {
+  .problem-list { grid-template-columns: repeat(2, 1fr); }
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  .testi-grid { grid-template-columns: repeat(2, 1fr); }
+  .screenshots { flex-direction: row; }
+  .sticky-cta { display: none; }
+}
+@media (min-width: 900px) {
+  .benefits-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero h1   { animation: fadeUp 0.55s ease both 0.05s; }
+.hero-sub  { animation: fadeUp 0.55s ease both 0.15s; }
+.price-box { animation: fadeUp 0.55s ease both 0.25s; }
+.trust-row { animation: fadeUp 0.55s ease both 0.35s; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  🔒 Pagamento seguro &nbsp;·&nbsp; <b>7 dias grátis</b> — sem cobrar nada agora &nbsp;·&nbsp; Cancele quando quiser
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="data:image/png;base64,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" alt="UniFin">
+  </div>
+  <a class="nav-cta" href="https://buy.stripe.com/5kQ00k9a52Fl8Fed6S0kE02">Testar grátis →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge"><span class="badge-dot"></span>Oferta por tempo limitado</div>
+  <h1>Você fatura bem… mas ainda perde dinheiro <mark>sem perceber</mark>.</h1>
+  <p class="hero-sub">O UniFin revela em minutos onde sua empresa está vazando lucro — e mostra exatamente o que fazer para corrigir.</p>
+
+  <div class="price-box">
+    <div class="price-tag-label">Acesso completo ao sistema</div>
+    <div class="price-original">De R$ 229,90/mês</div>
+    <div class="price-promo">
+      <span class="currency">R$</span>
+      <span class="value">149<span style="font-size:2rem">,90</span></span>
+      <span class="period">/mês</span>
+    </div>
+    <div class="price-savings">🎉 Você economiza R$ 80,00 por mês</div>
+    <div class="trial-notice">✅ <strong>7 dias completamente grátis.</strong> Nenhuma cobrança agora. Teste à vontade e cancele se não gostar.</div>
+    <a class="cta-main" href="https://buy.stripe.com/5kQ00k9a52Fl8Fed6S0kE02">Começar meu teste grátis agora</a>
+    <p class="cta-sub">Sem compromisso · Cancelamento simples · Suporte humano incluso</p>
+  </div>
+
+  <div class="trust-row">
+    <div class="trust-item">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1776f4" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Pagamento seguro
+    </div>
+    <div class="trust-item">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1776f4" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Pronto em 5 minutos
+    </div>
+    <div class="trust-item">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1776f4" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Suporte humano incluso
+    </div>
+  </div>
+</div>
+
+<!-- MOCKUP -->
+<div class="mockup-wrap reveal">
+  <img src="mockup.png" alt="Dashboard do sistema UniFin">
+</div>
+
+<!-- PROBLEMS -->
+<div class="problems-bg">
+  <section>
+    <p class="section-label">Você se identifica?</p>
+    <h2 class="section-title">Se isso acontece na sua empresa,<br>você ainda não tem controle real.</h2>
+    <p class="section-sub">São sinais clássicos de que o financeiro está no piloto automático — e isso custa caro.</p>
+    <div class="problem-list">
+      <div class="problem-item reveal"><div class="problem-icon">💸</div><p>Você fatura bem, mas <strong>não sabe quanto realmente sobra</strong> no final do mês.</p></div>
+      <div class="problem-item reveal"><div class="problem-icon">😰</div><p>O dinheiro entra, mas <strong>nunca parece suficiente</strong> para cobrir tudo.</p></div>
+      <div class="problem-item reveal"><div class="problem-icon">🎲</div><p>Decisões importantes são tomadas <strong>no feeling</strong>, sem dados concretos.</p></div>
+      <div class="problem-item reveal"><div class="problem-icon">📊</div><p>Você depende de <strong>planilhas bagunçadas</strong> que ninguém mais entende.</p></div>
+      <div class="problem-item reveal"><div class="problem-icon">🔍</div><p>Não sabe <strong>onde cortar custo</strong> sem prejudicar a operação.</p></div>
+      <div class="problem-item reveal"><div class="problem-icon">⏰</div><p>Perde horas tentando <strong>fechar o financeiro</strong> que deveria ser automático.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- BENEFITS -->
+<section>
+  <p class="section-label">O que muda com o UniFin</p>
+  <h2 class="section-title">De "acho que estou bem"<br>para "sei exatamente onde estou".</h2>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal"><div class="benefit-icon">🔦</div><h3>Clareza imediata</h3><p>Enxergue o problema sem precisar abrir uma planilha sequer.</p></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">📈</div><h3>Mais lucro</h3><p>Descubra onde está perdendo dinheiro e corrija rapidamente.</p></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">🎯</div><h3>Decisão segura</h3><p>Pare de "achar" e comece a agir com base em números reais.</p></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">⚙️</div><h3>Controle total</h3><p>Sua empresa deixa de ser imprevisível. Você passa a liderar de verdade.</p></div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section style="padding-top:0;">
+  <p class="section-label">Veja o sistema</p>
+  <h2 class="section-title">Dashboard limpo. Dados que fazem sentido.</h2>
+  <div class="screenshots">
+    <img src="sistema1.jpg" alt="Dashboard principal UniFin" class="reveal">
+    <img src="sistema2.jpg" alt="Relatórios UniFin" class="reveal">
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials-bg">
+  <section>
+    <p class="section-label">Quem já usa</p>
+    <h2 class="section-title">Resultados reais de quem parou de perder dinheiro.</h2>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Eu achava que tinha lucro… mas era ilusão. Descobri custos escondidos e consegui ajustar em poucas semanas. Imprescindível."</blockquote>
+        <div class="testi-author">
+          <div class="testi-avatar">CS</div>
+          <div><div class="testi-name">Carlos S.</div><div class="testi-role">Fisioterapeuta — Clínica própria</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Parei de decidir no achismo. Hoje sei exatamente o que está acontecendo no financeiro. Nunca mais voltei para planilha."</blockquote>
+        <div class="testi-author">
+          <div class="testi-avatar">JM</div>
+          <div><div class="testi-name">Juliana M.</div><div class="testi-role">Empreendedora — Estética</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- COMPARISON -->
+<section>
+  <p class="section-label">Por que o UniFin?</p>
+  <h2 class="section-title">Comparado com as alternativas.</h2>
+  <div class="comparison-box reveal">
+    <div class="comparison-header">
+      <div class="col-1">Recurso</div>
+      <div class="col-2">Planilha</div>
+      <div class="col-3">UniFin ✦</div>
+    </div>
+    <div class="comparison-row"><div class="col-1">Clareza em tempo real</div><div class="col-2 cross">✗</div><div class="col-3 check">✓</div></div>
+    <div class="comparison-row"><div class="col-1">Identificar onde perde dinheiro</div><div class="col-2 cross">✗</div><div class="col-3 check">✓</div></div>
+    <div class="comparison-row"><div class="col-1">Pronto em menos de 5 minutos</div><div class="col-2 cross">✗</div><div class="col-3 check">✓</div></div>
+    <div class="comparison-row"><div class="col-1">Sem precisar de contador</div><div class="col-2 cross">✗</div><div class="col-3 check">✓</div></div>
+    <div class="comparison-row"><div class="col-1">Relatórios automáticos</div><div class="col-2 cross">✗</div><div class="col-3 check">✓</div></div>
+    <div class="comparison-row"><div class="col-1">Suporte humano</div><div class="col-2 cross">✗</div><div class="col-3 check">✓</div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding-top:0;">
+  <p class="section-label">Dúvidas frequentes</p>
+  <h2 class="section-title">Respondendo antes que você pergunte.</h2>
+  <div class="faq-list">
+    <div class="faq-item reveal"><div class="faq-q">Preciso inserir cartão de crédito para testar? <span class="faq-icon">+</span></div><div class="faq-a">Depende do método que você escolher no cadastro. Se quiser, pode começar sem cartão e só informar na hora de assinar. Os 7 dias são 100% grátis e sem compromisso.</div></div>
+    <div class="faq-item reveal"><div class="faq-q">E se eu quiser cancelar? <span class="faq-icon">+</span></div><div class="faq-a">Você cancela quando quiser, direto na plataforma, em menos de 2 minutos. Sem burocracia, sem precisar ligar para ninguém.</div></div>
+    <div class="faq-item reveal"><div class="faq-q">Preciso ter conhecimento em finanças? <span class="faq-icon">+</span></div><div class="faq-a">Não. O UniFin foi criado para donos de negócio, não para contadores. A interface é simples e você já entende os dados no primeiro dia.</div></div>
+    <div class="faq-item reveal"><div class="faq-q">Funciona para qualquer tipo de empresa? <span class="faq-icon">+</span></div><div class="faq-a">Sim. Atende prestadores de serviço, comércio e pequenas indústrias. Se você tem faturamento e custos, o UniFin funciona para você.</div></div>
+    <div class="faq-item reveal"><div class="faq-q">Tenho suporte se precisar de ajuda? <span class="faq-icon">+</span></div><div class="faq-a">Sim, suporte humano por WhatsApp e e-mail incluso no plano. Você não fica sozinho.</div></div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta-bg">
+  <section>
+    <p class="section-label">Última chamada</p>
+    <h2 class="section-title">Teste 7 dias de graça.<br>Ou continua no escuro.</h2>
+    <p class="section-sub">Cada mês sem controle é dinheiro que some sem você saber. A decisão custa nada agora.</p>
+    <div class="final-price-row">
+      <span class="final-original">R$ 229,90/mês</span>
+      <span class="final-value">R$ 149,90</span>
+      <span class="final-period">/mês</span>
+    </div>
+    <div class="cta-final-wrap">
+      <a class="cta-final" href="https://buy.stripe.com/5kQ00k9a52Fl8Fed6S0kE02">Começar meu teste grátis agora</a>
+      <p class="cta-final-sub">7 dias grátis · Cancele quando quiser · Sem burocracia</p>
+    </div>
+    <div><span class="final-guarantee">🔒 Pagamento 100% seguro via Stripe</span></div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 UniFin · Desenvolvido por <strong>Mori Tech — Soluções Tecnológicas</strong></p>
+  <p style="margin-top:5px;">Todos os direitos reservados.</p>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta">
+  <a href="https://buy.stripe.com/5kQ00k9a52Fl8Fed6S0kE02">🚀 Testar grátis por 7 dias — R$ 149,90/mês</a>
+  <p class="sticky-cta-sub">Sem cobrança agora · Cancele quando quiser</p>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
